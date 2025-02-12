@@ -8,7 +8,7 @@ const TransactionsList = () => {
   console.log("Transactions Data:", transactions); // ✅ Debugging Log
 
   return (
-    <div className="p-4 border rounded-lg shadow-md bg-white">
+    <div className="p-4 bg-gray-50 rounded-lg shadow-md">
       <h2 className="text-xl font-bold mb-4">Transaction History</h2>
 
       {transactions.length === 0 ? (
@@ -21,7 +21,7 @@ const TransactionsList = () => {
             const originalAmount = parseFloat(txn.originalAmount) || 0;
 
             return (
-              <li key={txn.id} className="flex justify-between items-center border p-3 my-2 rounded">
+              <li key={txn.id} className="flex justify-between items-center bg-gray-100 p-3 my-2 rounded ">
                 <div>
                   <p className="font-bold">
                     {txn.desc} - ${amount.toFixed(2)} USD  
@@ -37,9 +37,9 @@ const TransactionsList = () => {
 
                 <button
                   onClick={() => dispatch(deleteTransaction(txn.id))}
-                  className="bg-red-500 text-white px-3 py-1 rounded"
+                  className="bg-red-500 text-white px-3 py-1 rounded-full hover:scale-105 transition-all"
                 >
-                  ❌ Delete
+                <b>Delete</b>
                 </button>
               </li>
             );

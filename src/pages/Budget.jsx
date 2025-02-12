@@ -15,8 +15,8 @@ const Budget = () => {
   };
 
   return (
-    <div className="p-4">
-      <h2 className="text-xl font-bold">Budget Management</h2>
+    <div className="p-4 mt-20">
+
       <BudgetGoals />  {/* ✅ Ensure this component is included */}
     </div>
   );

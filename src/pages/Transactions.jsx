@@ -3,8 +3,8 @@ import TransactionsList from "../components/TransactionList";
 
 const Transactions = () => {
   return (
-    <div className="p-4">
-      <h2 className="text-xl font-bold">Transactions</h2>
+    <div className="p-4 mt-20">
+
 
       {/* ✅ Show Add Transaction Form Here */}
       <TransactionForm />

@@ -25,7 +25,7 @@ const BudgetGoals = () => {
   };
 
   return (
-    <div className="p-4 border rounded-lg shadow-md bg-white">
+    <div className="p-4 rounded-lg shadow-md bg-gray-50 flex flex-col">
       <h2 className="text-xl font-bold mb-4">Budget Goals</h2>
 
       {/* Form to Set Budget Goals */}
@@ -33,7 +33,7 @@ const BudgetGoals = () => {
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="border p-2 rounded mr-2"
+          className="p-2 rounded-2xl mr-2 bg-gray-200"
         >
           <option value="Food">Food</option>
           <option value="Rent">Rent</option>
@@ -46,10 +46,10 @@ const BudgetGoals = () => {
           onChange={(e) => setGoalAmount(e.target.value)}
           placeholder="Set Goal Amount"
           required
-          className="border p-2 rounded mr-2"
+          className=" p-2 rounded-2xl mr-2 bg-gray-200"
         />
-        <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded">
-          Set Goal
+        <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded-full hover:scale-105 transition-all">
+          <b>Submit</b>
         </button>
       </form>
 

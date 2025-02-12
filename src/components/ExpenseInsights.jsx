@@ -26,7 +26,7 @@ const ExpenseInsights = () => {
   highestAmount = parseFloat(highestAmount) || 0;  // ✅ Ensure it's a number
 
   return (
-    <div className="p-4 border rounded-lg shadow-md bg-white mt-6">
+    <div className="p-4 rounded-lg shadow-md bg-red-100 mt-6">
       <h2 className="text-xl font-bold mb-4">Expense Insights</h2>
 
       {highestCategory ? (

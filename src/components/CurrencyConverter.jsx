@@ -7,8 +7,8 @@ const CurrencyConverter = () => {
   if (error) return <p className="text-red-500">Error fetching exchange rates.</p>;
 
   return (
-    <div className="p-4 border rounded-lg shadow-md bg-white">
-      <h2 className="text-xl font-bold mb-4">Currency Exchange Rates</h2>
+    <div className="p-4  rounded-lg shadow-md bg-green-100">
+      <h2 className="text-xl font-bold mb-4 ">Live Currency Exchange Rates</h2>
       <ul>
         {data ? Object.entries(data.conversion_rates).slice(0, 5).map(([currency, rate]) => (
           <li key={currency}>
