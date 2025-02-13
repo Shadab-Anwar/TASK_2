@@ -46,9 +46,9 @@ const BudgetGoals = () => {
           onChange={(e) => setGoalAmount(e.target.value)}
           placeholder="Set Goal Amount"
           required
-          className=" p-2 rounded-2xl mr-2 bg-gray-200"
+          className=" p-2 rounded-2xl mr-2 bg-gray-200 mt-2"
         />
-        <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded-full hover:scale-105 transition-all">
+        <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded-full hover:scale-105 transition-all my-2">
           <b>Submit</b>
         </button>
       </form>
