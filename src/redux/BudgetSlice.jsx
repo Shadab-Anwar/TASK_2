@@ -20,3 +20,4 @@ const budgetSlice = createSlice({
 
 export const { setBudget, updateSpent } = budgetSlice.actions;
 export default budgetSlice.reducer;
+
