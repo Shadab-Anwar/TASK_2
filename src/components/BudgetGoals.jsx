@@ -1,34 +1,40 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateSpent } from "../redux/BudgetSlice";
+import { updateSpent, setBudgetGoal } from "../redux/BudgetSlice";
 
 const BudgetGoals = () => {
   const dispatch = useDispatch();
   const [category, setCategory] = useState("Food");
   const [goalAmount, setGoalAmount] = useState("");
-  const [budgetGoals, setBudgetGoals] = useState({});
 
   const transactions = useSelector((state) => state.transactions?.transactions || []);
+  const budgetGoals = useSelector((state) => state.budget.budgetGoals);
   const totalBudget = useSelector((state) => state.budget.budget);
-  const spent = useSelector((state) => state.budget.spent);
+  const spent = useSelector((state) => Number(state.budget.spent) || 0);
 
   // Calculate spending for each category
   const categorySpending = transactions.reduce((acc, txn) => {
     if (!acc[txn.category]) acc[txn.category] = 0;
-    acc[txn.category] += txn.amount;
+    acc[txn.category] += Number(txn.amount);
     return acc;
   }, {});
 
+  // Update `spent` in Redux whenever transactions change
+  useEffect(() => {
+    const totalSpent = transactions.reduce((sum, txn) => sum + Number(txn.amount), 0);
+    dispatch(updateSpent(totalSpent)); // Set spent correctly
+  }, [transactions, dispatch]); // Runs only when transactions change
+  
+
   const handleGoalSubmit = (e) => {
     e.preventDefault();
-    if (!goalAmount || isNaN(goalAmount) || goalAmount <= 0) {
+    const numericGoal = parseFloat(goalAmount);
+    if (!goalAmount || isNaN(numericGoal) || numericGoal <= 0) {
       alert("Enter a valid goal amount");
       return;
     }
-    setBudgetGoals((prevGoals) => ({
-      ...prevGoals,
-      [category]: parseFloat(goalAmount),
-    }));
+
+    dispatch(setBudgetGoal({ category, goalAmount: numericGoal })); // Store in Redux
     setGoalAmount("");
   };
 
@@ -77,15 +83,10 @@ const BudgetGoals = () => {
         ))}
       </div>
 
-      {/* Overall Remaining Budget */}
-      <div className="mt-4">
-        <h3 className="text-lg font-bold">Overall Budget</h3>
-        <p><b>Total Budget:</b> ${totalBudget}</p>
-        <p><b>Total Spent:</b> ${spent}</p>
-        <p><b>Remaining Budget:</b> ${totalBudget - spent}</p>
-      </div>
+      
     </div>
   );
 };
 
 export default BudgetGoals;
+

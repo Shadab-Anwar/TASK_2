@@ -5,7 +5,7 @@ const TransactionsList = () => {
   const transactions = useSelector((state) => state.transactions.transactions);
   const dispatch = useDispatch();
 
-  console.log("Transactions Data:", transactions); // ✅ Debugging Log
+  console.log("Transactions Data:", transactions); 
 
   return (
     <div className="p-4 bg-gray-50 rounded-lg shadow-md">
@@ -16,7 +16,6 @@ const TransactionsList = () => {
       ) : (
         <ul>
           {transactions.map((txn) => {
-            // ✅ Ensure amount is a number
             const amount = parseFloat(txn.amount) || 0;
             const originalAmount = parseFloat(txn.originalAmount) || 0;
 
@@ -30,9 +29,9 @@ const TransactionsList = () => {
                     </span>
                   </p>
                   <p className="text-sm text-gray-600">
-                    💰 Original: {originalAmount.toFixed(2)} {txn.originalCurrency ? txn.originalCurrency : ""}
+                    Original: {originalAmount.toFixed(2)} {txn.originalCurrency ? txn.originalCurrency : ""}
                   </p>
-                  <p className="text-sm text-gray-600">📌 Category: {txn.category ? txn.category : "Unknown"}</p>
+                  <p className="text-sm text-gray-600">Category: {txn.category ? txn.category : "Unknown"}</p>
                 </div>
 
                 <button

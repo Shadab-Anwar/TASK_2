@@ -7,7 +7,7 @@ const ExpenseInsights = () => {
   const categorySpending = transactions.reduce((acc, txn) => {
     if (txn.type === "expense") {
       if (!acc[txn.category]) acc[txn.category] = 0;
-      acc[txn.category] += parseFloat(txn.amount) || 0;  // ✅ Ensure valid number
+      acc[txn.category] += parseFloat(txn.amount) || 0;  // Ensure valid number
     }
     return acc;
   }, {});
@@ -23,7 +23,7 @@ const ExpenseInsights = () => {
     }
   }
 
-  highestAmount = parseFloat(highestAmount) || 0;  // ✅ Ensure it's a number
+  highestAmount = parseFloat(highestAmount) || 0;  // Ensure it's a number
 
   return (
     <div className="p-4 rounded-lg shadow-md bg-red-100 mt-6">
@@ -40,10 +40,10 @@ const ExpenseInsights = () => {
       {/* 🔹 Suggestion Based on Spending */}
       {highestCategory && highestAmount > 200 ? (
         <p className="text-red-500">
-          🚨 You are spending a lot on {highestCategory}. Consider budgeting!
+          You are spending a lot on {highestCategory}. Consider budgeting!
         </p>
       ) : highestCategory ? (
-        <p className="text-green-500">✅ Your spending is balanced!</p>
+        <p className="text-green-500">Your spending is balanced!</p>
       ) : null}
     </div>
   );

@@ -10,7 +10,7 @@ import {
   Legend,
 } from "chart.js";
 
-// ✅ Register necessary Chart.js components
+// Register necessary Chart.js components
 ChartJS.register(BarElement, CategoryScale, LinearScale, Title, Tooltip, Legend);
 
 const Home = () => {
