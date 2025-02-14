@@ -14,16 +14,23 @@ const BudgetGoals = () => {
 
   // Calculate spending for each category
   const categorySpending = transactions.reduce((acc, txn) => {
-    if (!acc[txn.category]) acc[txn.category] = 0;
-    acc[txn.category] += Number(txn.amount);
+    if (txn.type !== "income") { // Exclude income transactions
+      if (!acc[txn.category]) acc[txn.category] = 0;
+      acc[txn.category] += Number(txn.amount); // Convert to number before adding
+    }
     return acc;
   }, {});
+  
 
   // Update `spent` in Redux whenever transactions change
   useEffect(() => {
-    const totalSpent = transactions.reduce((sum, txn) => sum + Number(txn.amount), 0);
+    const totalSpent = transactions
+      .filter((txn) => txn.type !== "income") // Exclude income transactions
+      .reduce((sum, txn) => sum + Number(txn.amount), 0);
+  
     dispatch(updateSpent(totalSpent)); // Set spent correctly
-  }, [transactions, dispatch]); // Runs only when transactions change
+  }, [transactions, dispatch]);
+  
   
 
   const handleGoalSubmit = (e) => {
